@@ -9,7 +9,7 @@ namespace TaskManager.Application.Entities
 
     public Tenant? Tenant{get;private set;}
 
-    public Guid CreatedUserById { get; private set;}
+    public Guid CreatedByUserId { get; private set;}
 
     public User? CreatedByUser{get;private set;}
 

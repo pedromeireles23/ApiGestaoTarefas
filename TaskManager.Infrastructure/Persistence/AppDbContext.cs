@@ -1,3 +1,4 @@
+using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using TaskManager.Application.Entities;
 
@@ -10,6 +11,10 @@ namespace TaskManager.Infrastructure.Persistence
     {
       
     }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+}
     public DbSet<Tenant> Tenants {get;set;}
     public DbSet<User> Users {get;set;}
     public DbSet<Workspace> Workspaces {get;set;}
