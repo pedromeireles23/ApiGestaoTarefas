@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using TaskManager.Application.Interfaces;
 using TaskManager.Infrastructure.Persistence;
 using TaskManager.Infrastructure.Services;
+using TaskManager.Infrastructure.Repositories;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -11,6 +12,11 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
     builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<ITenantService, TenantService>();
+builder.Services.AddScoped<ITenantRepository, TenantRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IWorkspaceRepository, WorkspaceRepository>();
+builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
+builder.Services.AddScoped<ITaskItemRepository, TaskItemRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
